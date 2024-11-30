@@ -7,6 +7,7 @@ import com.fiap.msClientes.infra.persistence.cliente.ClienteEntity;
 import com.fiap.msClientes.infra.persistence.cliente.ClienteRepository;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 public class RepositorioDeClienteJpa implements
@@ -15,7 +16,8 @@ public class RepositorioDeClienteJpa implements
         ExcluirClienteInterface,
         ObterClientePorCpfInterface,
         ObterClientePorIdInterface,
-        ObterTodosOsClientesInterface {
+        ObterTodosOsClientesInterface,
+ValidarClienteInterface{
 
     private final ClienteRepository clienteRepository;
     private final ClienteMapper clienteMapper;
@@ -67,5 +69,12 @@ public class RepositorioDeClienteJpa implements
                 .stream()
                 .map(clienteMapper::toDomain)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Boolean validarCliente(Long id) {
+        ClienteEntity entity = clienteRepository.findById(id).orElseThrow(() ->
+                new NoSuchElementException("Não foi possível encontrar o Cliente"));
+        return true;
     }
 }

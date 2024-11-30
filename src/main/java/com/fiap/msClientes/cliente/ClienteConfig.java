@@ -42,6 +42,11 @@ public class ClienteConfig {
     }
 
     @Bean
+    ValidarCliente validarCliente(ValidarClienteInterface validarClienteInterface){
+        return new ValidarCliente(validarClienteInterface);
+    }
+
+    @Bean
     RepositorioDeClienteJpa repositorioDeClienteJpa(ClienteRepository clienteRepository, ClienteMapper mapper){
         return new RepositorioDeClienteJpa(clienteRepository, mapper);
     }

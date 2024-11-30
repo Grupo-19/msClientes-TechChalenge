@@ -17,14 +17,16 @@ public class ClienteController {
     private final ObterClientePorCpf obterClientePorCpf;
     private final ObterClientePorId obterClientePorId;
     private final ObterTodosOsClientes obterTodosOsClientes;
+    private final ValidarCliente validarCliente;
 
-    public ClienteController(AtualizarCliente atualizarCliente, CadastrarCliente cadastrarCliente, ExcluirCliente excluirCliente, ObterClientePorCpf obterClientePorCpf, ObterClientePorId obterClientePorId, ObterTodosOsClientes obterTodosOsClientes) {
+    public ClienteController(AtualizarCliente atualizarCliente, CadastrarCliente cadastrarCliente, ExcluirCliente excluirCliente, ObterClientePorCpf obterClientePorCpf, ObterClientePorId obterClientePorId, ObterTodosOsClientes obterTodosOsClientes, ValidarCliente validarCliente) {
         this.atualizarCliente = atualizarCliente;
         this.cadastrarCliente = cadastrarCliente;
         this.excluirCliente = excluirCliente;
         this.obterClientePorCpf = obterClientePorCpf;
         this.obterClientePorId = obterClientePorId;
         this.obterTodosOsClientes = obterTodosOsClientes;
+        this.validarCliente = validarCliente;
     }
 
     @PutMapping
@@ -67,5 +69,10 @@ public class ClienteController {
                 v.getEmail(),
                 v.getSenha())));
         return clientesDTO;
+    }
+
+    @GetMapping("/consultar/{id}")
+    public Boolean validarCliente(@PathVariable Long id) {
+        return validarCliente.validarCliente(id);
     }
 }
