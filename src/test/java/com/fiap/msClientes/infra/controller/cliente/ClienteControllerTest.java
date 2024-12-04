@@ -24,7 +24,7 @@ class ClienteControllerTest {
     private MockMvc mockMvc;
 
     @Mock
-    private AtualizarClienteTest atualizarCliente;
+    private AtualizarCliente atualizarCliente;
 
     @Mock
     private CadastrarCliente cadastrarCliente;

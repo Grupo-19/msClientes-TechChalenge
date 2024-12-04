@@ -17,7 +17,7 @@ class ClienteConfigTest {
 
     @Test
     void testBeansCreation() {
-        assertNotNull(applicationContext.getBean(AtualizarClienteTest.class));
+        assertNotNull(applicationContext.getBean(AtualizarCliente.class));
         assertNotNull(applicationContext.getBean(CadastrarCliente.class));
         assertNotNull(applicationContext.getBean(ExcluirCliente.class));
         assertNotNull(applicationContext.getBean(ObterClientePorCpf.class));
